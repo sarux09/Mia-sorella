@@ -23,114 +23,49 @@
             overflow: hidden;
         }
 
-        body::before {
-            content: '';
+        .hunter-license {
             position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
             z-index: -1;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-
-        .fishing-rod {
-            position: fixed;
-            z-index: -1;
-            opacity: 0.3;
+            opacity: 0.15;
             pointer-events: none;
         }
 
-        .fishing-rod-stick {
-            width: 4px;
-            height: 200px;
-            background: linear-gradient(to bottom, #8B4513, #A0522D);
-            border-radius: 2px;
+        .license-container {
+            width: 400px;
+            height: 400px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
             position: relative;
-            transform-origin: top center;
         }
 
-        .fishing-rod-line {
+        .license-triangle {
+            width: 0;
+            height: 0;
+            border-left: 200px solid transparent;
+            border-right: 200px solid transparent;
+            border-bottom: 350px solid rgba(255, 255, 255, 0.8);
+            position: relative;
+        }
+
+        .license-symbol {
             position: absolute;
-            width: 2px;
-            height: 150px;
-            background: linear-gradient(to bottom, #d4af37, #ffd700);
-            top: 100%;
+            top: 30%;
             left: 50%;
             transform: translateX(-50%);
-        }
-
-        .fishing-hook {
-            position: absolute;
-            width: 8px;
-            height: 12px;
-            border: 2px solid #d4af37;
-            border-radius: 0 0 50% 50%;
-            bottom: -10px;
-            left: 50%;
-            transform: translateX(-50%);
-        }
-
-        @keyframes float1 {
-            0%, 100% {
-                transform: translateY(0px) rotate(0deg);
-            }
-            50% {
-                transform: translateY(-60px) rotate(5deg);
-            }
-        }
-
-        @keyframes float2 {
-            0%, 100% {
-                transform: translateY(-30px) rotate(0deg);
-            }
-            50% {
-                transform: translateY(30px) rotate(-5deg);
-            }
-        }
-
-        @keyframes float3 {
-            0%, 100% {
-                transform: translateY(-15px) rotate(0deg);
-            }
-            50% {
-                transform: translateY(-75px) rotate(3deg);
-            }
-        }
-
-        @keyframes float4 {
-            0%, 100% {
-                transform: translateY(0px) rotate(0deg);
-            }
-            50% {
-                transform: translateY(-50px) rotate(-4deg);
-            }
-        }
-
-        .rod-1 {
-            top: 10%;
-            left: 10%;
-            animation: float1 6s ease-in-out infinite;
-        }
-
-        .rod-2 {
-            top: 25%;
-            right: 15%;
-            animation: float2 7s ease-in-out infinite;
-        }
-
-        .rod-3 {
-            bottom: 20%;
-            left: 5%;
-            animation: float3 8s ease-in-out infinite;
-        }
-
-        .rod-4 {
-            top: 40%;
-            right: 5%;
-            animation: float4 6.5s ease-in-out infinite;
+            width: 100px;
+            height: 100px;
+            background: rgba(102, 126, 234, 0.9);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 60px;
+            color: white;
+            z-index: 10;
         }
 
         .container {
@@ -335,32 +270,11 @@
     </style>
 </head>
 <body>
-    <!-- Canne da pesca fluttuanti di Gon -->
-    <div class="fishing-rod rod-1">
-        <div class="fishing-rod-stick">
-            <div class="fishing-rod-line">
-                <div class="fishing-hook"></div>
-            </div>
-        </div>
-    </div>
-    <div class="fishing-rod rod-2">
-        <div class="fishing-rod-stick">
-            <div class="fishing-rod-line">
-                <div class="fishing-hook"></div>
-            </div>
-        </div>
-    </div>
-    <div class="fishing-rod rod-3">
-        <div class="fishing-rod-stick">
-            <div class="fishing-rod-line">
-                <div class="fishing-hook"></div>
-            </div>
-        </div>
-    </div>
-    <div class="fishing-rod rod-4">
-        <div class="fishing-rod-stick">
-            <div class="fishing-rod-line">
-                <div class="fishing-hook"></div>
+    <!-- Segno della Licenza da Hunter -->
+    <div class="hunter-license">
+        <div class="license-container">
+            <div class="license-triangle">
+                <div class="license-symbol">🎯</div>
             </div>
         </div>
     </div>
