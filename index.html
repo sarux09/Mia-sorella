@@ -39,48 +39,47 @@
                 radial-gradient(circle at 90% 70%, rgba(255, 255, 255, 0.08) 0%, transparent 50%);
         }
 
-        .hunter-license {
+        .hunter-badge {
             position: fixed;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            z-index: -1;
-            opacity: 0.15;
+            z-index: 1;
+            opacity: 0.2;
             pointer-events: none;
         }
 
-        .license-container {
-            width: 400px;
-            height: 400px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            position: relative;
+        .hunter-badge-left {
+            left: 20px;
+            top: 50%;
+            transform: translateY(-50%);
         }
 
-        .license-triangle {
+        .hunter-badge-right {
+            right: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+        }
+
+        .badge-triangle {
             width: 0;
             height: 0;
-            border-left: 200px solid transparent;
-            border-right: 200px solid transparent;
-            border-bottom: 350px solid rgba(255, 255, 255, 0.8);
+            border-left: 60px solid transparent;
+            border-right: 60px solid transparent;
+            border-bottom: 100px solid rgba(255, 255, 255, 0.9);
             position: relative;
         }
 
-        .license-symbol {
+        .badge-center {
             position: absolute;
-            top: 30%;
+            top: 25%;
             left: 50%;
             transform: translateX(-50%);
-            width: 100px;
-            height: 100px;
-            background: rgba(102, 126, 234, 0.9);
+            width: 40px;
+            height: 40px;
+            background: rgba(102, 126, 234, 0.8);
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 60px;
-            color: white;
+            font-size: 20px;
             z-index: 10;
         }
 
@@ -286,12 +285,15 @@
     </style>
 </head>
 <body>
-    <!-- Segno della Licenza da Hunter -->
-    <div class="hunter-license">
-        <div class="license-container">
-            <div class="license-triangle">
-                <div class="license-symbol">🎯</div>
-            </div>
+    <!-- Simboli Hunter ai lati della pagina -->
+    <div class="hunter-badge hunter-badge-left">
+        <div class="badge-triangle">
+            <div class="badge-center">🎯</div>
+        </div>
+    </div>
+    <div class="hunter-badge hunter-badge-right">
+        <div class="badge-triangle">
+            <div class="badge-center">🎯</div>
         </div>
     </div>
 
