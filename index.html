@@ -529,14 +529,14 @@
     </style>
 </head>
 <body>
-    <!-- Background Audio - Canzone Standard -->
+    <!-- Background Audio - Baby by Justin Bieber -->
     <audio id="bgAudio" loop preload="auto">
-        <!-- Melodia royalty-free rilassante -->
-        <source src="https://www.soundjay.com/misc/sounds/bell-ringing-05.wav" type="audio/wav">
-        <!-- Fallback: carica il file canzone.mp3 nella cartella del progetto -->
-        <source src="./canzone.mp3" type="audio/mpeg">
+        <!-- Link legale da servizio di streaming (30 secondi preview) -->
+        <source src="https://cdns-preview-d.dzcdn.net/stream/c-deda7fa9316d9e9e880d2c6207e922c5-5.mp3" type="audio/mpeg">
+        <!-- Fallback: carica il file baby-justin-bieber.mp3 nella cartella del progetto -->
+        <source src="./baby-justin-bieber.mp3" type="audio/mpeg">
     </audio>
-    <button class="audio-control" id="audioToggle" title="Riproduci/Ferma musica di sottofondo">🎵</button>
+    <button class="audio-control" id="audioToggle" title="Riproduci/Ferma Baby di Justin Bieber">🎵</button>
     <div class="container">
         <h1>
             <span class="emoji">🌟</span>
@@ -624,7 +624,7 @@
     </div>
 
     <script>
-        // Audio Control per musica di sottofondo
+        // Audio Control per Baby di Justin Bieber
         const audio = document.getElementById('bgAudio');
         const audioToggle = document.getElementById('audioToggle');
         let isPlaying = false;
