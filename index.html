@@ -48,6 +48,7 @@
             z-index: 1;
             opacity: 0.2;
             pointer-events: none;
+            animation: float 4s ease-in-out infinite;
         }
 
         .hunter-badge-left {
@@ -379,10 +380,6 @@
             }
         }
 
-        h1 {
-            animation: glow 2s ease-in-out infinite;
-        }
-
         .message {
             animation: fadeInUp 1s ease-out 0.3s both;
         }
@@ -460,10 +457,6 @@
             opacity: 0.95;
         }
 
-        .hunter-badge {
-            animation: float 4s ease-in-out infinite;
-        }
-
         .emoji {
             display: inline-block;
             animation: rotate 8s linear infinite;
@@ -517,6 +510,13 @@
             transform: scale(0.95);
         }
 
+        .audio-hint {
+            margin-top: 15px;
+            font-size: 0.95em;
+            color: #555;
+            opacity: 0.9;
+        }
+
         @media (max-width: 768px) {
             .audio-control {
                 width: 50px;
@@ -536,7 +536,7 @@
         <!-- Fallback: carica il file royalty-free.mp3 nella cartella del progetto -->
         <source src="./royalty-free.mp3" type="audio/mpeg">
     </audio>
-    <button class="audio-control" id="audioToggle" title="Riproduci/Ferma musica">🎵</button>
+    <button class="audio-control" id="audioToggle" title="Riproduci/Ferma musica">▶️</button>
 
     <!-- Sound Effects -->
     <audio id="clickSound" preload="auto">
@@ -554,6 +554,7 @@
             La Mia Sorella Speciale
             <span class="emoji">💙</span>
         </h1>
+        <div class="audio-hint">Clicca il pulsante in basso a destra per avviare o mettere in pausa la musica di sottofondo.</div>
 
         <div class="message">
             "Una sorella è come una migliore amica regalata dalla vita. Sei il mio tesoro personale!"
@@ -652,36 +653,40 @@
 
         // Imposta volume basso per sottofondo
         audio.volume = 0.3;
+        updateAudioButton();
+
+        function updateAudioButton() {
+            if (audio.paused) {
+                audioToggle.textContent = '▶️';
+                audioToggle.title = 'Riproduci musica';
+                audioToggle.setAttribute('aria-pressed', 'false');
+                isPlaying = false;
+            } else {
+                audioToggle.textContent = '⏸️';
+                audioToggle.title = 'Metti in pausa musica';
+                audioToggle.setAttribute('aria-pressed', 'true');
+                isPlaying = true;
+            }
+        }
 
         // Toggle del pulsante
         audioToggle.addEventListener('click', function() {
             clickSound.currentTime = 0;
-            clickSound.play();
-            if (isPlaying) {
-                audio.pause();
-                audioToggle.textContent = '🔇';
-                isPlaying = false;
-            } else {
+            clickSound.play().catch(function() {
+                // ignore play error for click sound
+            });
+
+            if (audio.paused) {
                 audio.play().catch(function(error) {
-                    console.log('Autoplay bloccato dal browser - clicca per riprodurre');
-                    // Se autoplay è bloccato, mostra un messaggio
-                    audioToggle.textContent = '▶️';
-                });
-                audioToggle.textContent = '🎵';
-                isPlaying = true;
+                    console.log('Riproduzione bloccata dal browser:', error);
+                }).finally(updateAudioButton);
+            } else {
+                audio.pause();
             }
         });
 
-        // Aggiorna l'icona quando la musica finisce e riparte
-        audio.addEventListener('play', function() {
-            audioToggle.textContent = '🎵';
-            isPlaying = true;
-        });
-
-        audio.addEventListener('pause', function() {
-            audioToggle.textContent = '🔇';
-            isPlaying = false;
-        });
+        audio.addEventListener('play', updateAudioButton);
+        audio.addEventListener('pause', updateAudioButton);
 
         // Quando finisce, ricomincia automaticamente
         audio.addEventListener('ended', function() {
