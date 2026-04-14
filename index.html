@@ -288,6 +288,204 @@
         .listen-btn:active {
             transform: translateY(-1px);
         }
+
+        /* Animazioni aggiuntive */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(40px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-40px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes pulse {
+            0%, 100% {
+                box-shadow: 0 0 0 0 rgba(34, 139, 34, 0.7);
+            }
+            50% {
+                box-shadow: 0 0 0 15px rgba(34, 139, 34, 0);
+            }
+        }
+
+        @keyframes glow {
+            0%, 100% {
+                text-shadow: 0 0 5px rgba(206, 43, 55, 0.8), 0 0 10px rgba(34, 139, 34, 0.5);
+            }
+            50% {
+                text-shadow: 0 0 10px rgba(206, 43, 55, 1), 0 0 20px rgba(34, 139, 34, 0.8), 0 0 30px rgba(206, 43, 55, 0.6);
+            }
+        }
+
+        @keyframes slideInRight {
+            from {
+                opacity: 0;
+                transform: translateX(60px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes slideInLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-60px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes rotate {
+            from {
+                transform: rotate(0deg);
+            }
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+        @keyframes bounce {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-15px);
+            }
+        }
+
+        @keyframes shimmer {
+            0% {
+                background-position: -1000px 0;
+            }
+            100% {
+                background-position: 1000px 0;
+            }
+        }
+
+        h1 {
+            animation: glow 2s ease-in-out infinite;
+        }
+
+        .message {
+            animation: fadeInUp 1s ease-out 0.3s both;
+        }
+
+        .hunter-section {
+            animation: fadeInUp 1s ease-out both;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .hunter-section:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(34, 139, 34, 0.2);
+        }
+
+        .char-box {
+            animation: fadeInUp 1s ease-out both;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .char-box:hover {
+            transform: scale(1.08) rotateY(5deg);
+            box-shadow: 0 8px 25px rgba(206, 43, 55, 0.4);
+        }
+
+        .kingdom-section {
+            background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 50%, #1a1a1a 100%);
+            border-radius: 20px;
+            padding: 40px;
+            color: white;
+            margin: 25px 0;
+            text-align: center;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
+            position: relative;
+            overflow: hidden;
+            border: 2px solid #CE2B37;
+            animation: fadeInUp 1.2s ease-out;
+        }
+
+        .kingdom-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(206, 43, 55, 0.2), transparent);
+            animation: shimmer 3s infinite;
+        }
+
+        .kingdom-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        .kingdom-title {
+            font-size: 2.2em;
+            font-weight: bold;
+            margin-bottom: 10px;
+            text-shadow: 0 0 20px rgba(206, 43, 55, 0.8), 0 0 40px rgba(34, 139, 34, 0.5);
+            animation: pulse 2s ease-in-out infinite;
+        }
+
+        .kingdom-subtitle {
+            font-size: 1.05em;
+            opacity: 0.9;
+            margin-bottom: 25px;
+            font-style: italic;
+            color: #CE2B37;
+        }
+
+        .kingdom-description {
+            font-size: 0.95em;
+            margin-bottom: 25px;
+            line-height: 1.6;
+            opacity: 0.95;
+        }
+
+        .hunter-badge {
+            animation: float 4s ease-in-out infinite;
+        }
+
+        .emoji {
+            display: inline-block;
+            animation: rotate 8s linear infinite;
+            transform-origin: center;
+        }
+
+        .emoji.bounce-emoji {
+            animation: bounce 1s ease-in-out infinite;
+        }
+
+        img {
+            animation: fadeInUp 1.5s ease-out;
+            perspective: 1000px;
+        }
+
+        .song-section {
+            animation: slideInRight 1s ease-out;
+        }
+
+        .hunter-quote {
+            animation: fadeInUp 1.6s ease-out;
+        }
     </style>
 </head>
 <body>
@@ -362,6 +560,27 @@
                     </a>
                     <a href="https://www.youtube.com/results?search_query=you+never+loved+me" target="_blank" class="listen-btn">
                         🎬 Guarda su YouTube
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <div class="kingdom-section">
+            <div class="kingdom-content">
+                <div class="kingdom-title">👑 Kingdom of Predators 👑</div>
+                <div class="kingdom-subtitle">La sigla leggendaria di Hunter x Hunter</div>
+                <div class="kingdom-description">
+                    Una delle sigle più iconiche dell'anime! Questa musica racchiude l'intensità, la determinazione e lo spirito avventuriero di Hunter x Hunter. Proprio come il significato della sigla, voglio che sappia che sei una "predatrice" nel raggiungere i tuoi sogni! 🔥
+                </div>
+                <div class="listen-buttons">
+                    <a href="https://open.spotify.com/search/Kingdom%20of%20Predators%20Hunter%20x%20Hunter" target="_blank" class="listen-btn">
+                        🎧 Ascolta su Spotify
+                    </a>
+                    <a href="https://www.youtube.com/results?search_query=Kingdom+of+Predators+Hunter+x+Hunter+opening" target="_blank" class="listen-btn">
+                        🎬 Guarda su YouTube
+                    </a>
+                    <a href="https://music.youtube.com/search?q=Kingdom+of+Predators+Hunter+x+Hunter" target="_blank" class="listen-btn">
+                        🎵 YouTube Music
                     </a>
                 </div>
             </div>
