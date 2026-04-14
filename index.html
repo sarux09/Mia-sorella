@@ -529,14 +529,14 @@
     </style>
 </head>
 <body>
-    <!-- Background Audio - Departure! (Hunter x Hunter Opening) -->
+    <!-- Background Audio - Canzone Standard -->
     <audio id="bgAudio" loop preload="auto">
-        <!-- Preview legale da servizio streaming -->
-        <source src="https://cdns-preview-9.dzcdn.net/stream/c-9b1f8b2b8b8b8b8b8b8b8b8b8b8b8b8b8b8b8b8b.mp3" type="audio/mpeg">
-        <!-- Fallback: carica il file departure-hxh.mp3 nella cartella del progetto -->
-        <source src="./departure-hxh.mp3" type="audio/mpeg">
+        <!-- Melodia royalty-free rilassante -->
+        <source src="https://www.soundjay.com/misc/sounds/bell-ringing-05.wav" type="audio/wav">
+        <!-- Fallback: carica il file canzone.mp3 nella cartella del progetto -->
+        <source src="./canzone.mp3" type="audio/mpeg">
     </audio>
-    <button class="audio-control" id="audioToggle" title="Riproduci/Ferma Departure! (Hunter x Hunter)">🎵</button>
+    <button class="audio-control" id="audioToggle" title="Riproduci/Ferma musica di sottofondo">🎵</button>
     <div class="container">
         <h1>
             <span class="emoji">🌟</span>
@@ -624,7 +624,7 @@
     </div>
 
     <script>
-        // Audio Control per Baby di Justin Bieber
+        // Audio Control per musica di sottofondo
         const audio = document.getElementById('bgAudio');
         const audioToggle = document.getElementById('audioToggle');
         let isPlaying = false;
