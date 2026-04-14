@@ -529,14 +529,25 @@
     </style>
 </head>
 <body>
-    <!-- Background Audio - Baby by Justin Bieber -->
+    <!-- Background Audio - Canzone Royalty-Free -->
     <audio id="bgAudio" loop preload="auto">
-        <!-- Link legale da servizio di streaming (30 secondi preview) -->
-        <source src="https://cdns-preview-d.dzcdn.net/stream/c-deda7fa9316d9e9e880d2c6207e922c5-5.mp3" type="audio/mpeg">
-        <!-- Fallback: carica il file baby-justin-bieber.mp3 nella cartella del progetto -->
-        <source src="./baby-justin-bieber.mp3" type="audio/mpeg">
+        <!-- Melodia royalty-free rilassante -->
+        <source src="https://www.soundjay.com/misc/sounds/bell-ringing-05.wav" type="audio/wav">
+        <!-- Fallback: carica il file royalty-free.mp3 nella cartella del progetto -->
+        <source src="./royalty-free.mp3" type="audio/mpeg">
     </audio>
-    <button class="audio-control" id="audioToggle" title="Riproduci/Ferma Baby di Justin Bieber">🎵</button>
+    <button class="audio-control" id="audioToggle" title="Riproduci/Ferma musica royalty-free">🎵</button>
+
+    <!-- Sound Effects -->
+    <audio id="clickSound" preload="auto">
+        <source src="https://www.soundjay.com/misc/sounds/bell-ringing-05.wav" type="audio/wav">
+    </audio>
+    <audio id="hoverSound" preload="auto">
+        <source src="https://www.soundjay.com/misc/sounds/bell-ringing-04.wav" type="audio/wav">
+    </audio>
+    <audio id="heartSound" preload="auto">
+        <source src="https://www.soundjay.com/misc/sounds/bell-ringing-03.wav" type="audio/wav">
+    </audio>
     <div class="container">
         <h1>
             <span class="emoji">🌟</span>
@@ -624,16 +635,28 @@
     </div>
 
     <script>
-        // Audio Control per Baby di Justin Bieber
+        // Audio Control per musica royalty-free
         const audio = document.getElementById('bgAudio');
         const audioToggle = document.getElementById('audioToggle');
         let isPlaying = false;
+
+        // Sound Effects
+        const clickSound = document.getElementById('clickSound');
+        const hoverSound = document.getElementById('hoverSound');
+        const heartSound = document.getElementById('heartSound');
+
+        // Imposta volume suoni effetto
+        clickSound.volume = 0.2;
+        hoverSound.volume = 0.1;
+        heartSound.volume = 0.15;
 
         // Imposta volume basso per sottofondo
         audio.volume = 0.3;
 
         // Toggle del pulsante
         audioToggle.addEventListener('click', function() {
+            clickSound.currentTime = 0;
+            clickSound.play();
             if (isPlaying) {
                 audio.pause();
                 audioToggle.textContent = '🔇';
@@ -664,6 +687,44 @@
         audio.addEventListener('ended', function() {
             audio.currentTime = 0;
             audio.play();
+        });
+
+        // Sound Effects per elementi interattivi
+        const buttons = document.querySelectorAll('button, .listen-btn');
+        const charBoxes = document.querySelectorAll('.char-box');
+        const heartAnimations = document.querySelectorAll('.heart-animation');
+
+        // Suono click per tutti i pulsanti
+        buttons.forEach(button => {
+            button.addEventListener('click', function() {
+                clickSound.currentTime = 0;
+                clickSound.play();
+            });
+        });
+
+        // Suono hover per elementi interattivi
+        charBoxes.forEach(box => {
+            box.addEventListener('mouseenter', function() {
+                hoverSound.currentTime = 0;
+                hoverSound.play();
+            });
+        });
+
+        // Suono per cuori che battono
+        heartAnimations.forEach(heart => {
+            heart.addEventListener('mouseenter', function() {
+                heartSound.currentTime = 0;
+                heartSound.play();
+            });
+        });
+
+        // Suono hover per immagini
+        const images = document.querySelectorAll('img');
+        images.forEach(img => {
+            img.addEventListener('mouseenter', function() {
+                hoverSound.currentTime = 0;
+                hoverSound.play();
+            });
         });
     </script>
 </body>
