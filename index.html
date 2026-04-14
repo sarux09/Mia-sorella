@@ -530,8 +530,9 @@
 </head>
 <body>
     <!-- Background Audio - Kingdom of Predators -->
-    <audio id="bgAudio" autoplay loop>
-        <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mpeg">
+    <div id="playerContainer" style="display:none; position:fixed; width:1px; height:1px; pointer-events:none; z-index:-1;"></div>
+    <audio id="bgAudio" autoplay loop volume="0.3">
+        <source src="https://invokeai.github.io/media/Kingdom_of_Predators.mp3" type="audio/mpeg">
     </audio>
     <button class="audio-control" id="audioToggle" title="Accendi/Spegni musica">🔊</button>
     <div class="container">
