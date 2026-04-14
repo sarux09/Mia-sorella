@@ -486,9 +486,54 @@
         .hunter-quote {
             animation: fadeInUp 1.6s ease-out;
         }
+
+        /* Audio Player Control */
+        .audio-control {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            z-index: 1000;
+            background: linear-gradient(135deg, #228B22 0%, #CE2B37 100%);
+            border-radius: 50%;
+            width: 60px;
+            height: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+            transition: all 0.3s ease;
+            border: 2px solid white;
+            color: white;
+            font-size: 1.5em;
+        }
+
+        .audio-control:hover {
+            transform: scale(1.1);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4);
+        }
+
+        .audio-control:active {
+            transform: scale(0.95);
+        }
+
+        @media (max-width: 768px) {
+            .audio-control {
+                width: 50px;
+                height: 50px;
+                font-size: 1.2em;
+                right: 20px;
+                bottom: 20px;
+            }
+        }
     </style>
 </head>
 <body>
+    <!-- Background Audio - Kingdom of Predators -->
+    <audio id="bgAudio" autoplay loop>
+        <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mpeg">
+    </audio>
+    <button class="audio-control" id="audioToggle" title="Accendi/Spegni musica">🔊</button>
     <div class="container">
         <h1>
             <span class="emoji">🌟</span>
@@ -595,5 +640,43 @@
             <p style="margin-top: 10px; font-size: 0.8em;">Buoni Gatti ~ 🧿</p>
         </div>
     </div>
+
+    <script>
+        // Audio Control
+        const audio = document.getElementById('bgAudio');
+        const audioToggle = document.getElementById('audioToggle');
+        let isPlaying = true;
+
+        // Tenta di riprodurre automaticamente
+        audio.play().catch(function(error) {
+            isPlaying = false;
+            audioToggle.textContent = '🔇';
+            console.log('Autoplay bloccato dal browser');
+        });
+
+        // Toggle del pulsante
+        audioToggle.addEventListener('click', function() {
+            if (isPlaying) {
+                audio.pause();
+                audioToggle.textContent = '🔇';
+                isPlaying = false;
+            } else {
+                audio.play();
+                audioToggle.textContent = '🔊';
+                isPlaying = true;
+            }
+        });
+
+        // Aggiorna l'icona quando la musica finisce e riparte
+        audio.addEventListener('play', function() {
+            audioToggle.textContent = '🔊';
+            isPlaying = true;
+        });
+
+        audio.addEventListener('pause', function() {
+            audioToggle.textContent = '🔇';
+            isPlaying = false;
+        });
+    </script>
 </body>
 </html>
