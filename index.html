@@ -529,11 +529,14 @@
     </style>
 </head>
 <body>
-    <!-- Background Audio - Baby by Justin Bieber (via Spotify) -->
-    <button class="audio-control" id="audioToggle" title="Accendi/Spegni musica di sottofondo">🎵</button>
-    <div id="spotifyPlayer" style="position:fixed; top:10px; right:10px; z-index:999; opacity:0.7;">
-        <iframe style="border-radius:12px" src="https://open.spotify.com/embed/track/62bPgb5f7ZP0DgcdRCdpLV?utm_source=generator" width="100%" height="80" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"></iframe>
-    </div>
+    <!-- Background Audio - Baby by Justin Bieber -->
+    <audio id="bgAudio" loop preload="auto">
+        <!-- Link legale da servizio di streaming (30 secondi preview) -->
+        <source src="https://cdns-preview-d.dzcdn.net/stream/c-deda7fa9316d9e9e880d2c6207e922c5-5.mp3" type="audio/mpeg">
+        <!-- Fallback: carica il file baby-justin-bieber.mp3 nella cartella del progetto -->
+        <source src="./baby-justin-bieber.mp3" type="audio/mpeg">
+    </audio>
+    <button class="audio-control" id="audioToggle" title="Riproduci/Ferma Baby di Justin Bieber">🎵</button>
     <div class="container">
         <h1>
             <span class="emoji">🌟</span>
@@ -621,22 +624,46 @@
     </div>
 
     <script>
-        // Spotify Player Control
+        // Audio Control per Baby di Justin Bieber
+        const audio = document.getElementById('bgAudio');
         const audioToggle = document.getElementById('audioToggle');
-        const spotifyPlayer = document.getElementById('spotifyPlayer');
-        let isVisible = true;
+        let isPlaying = false;
 
-        // Toggle della visibilità del player
+        // Imposta volume basso per sottofondo
+        audio.volume = 0.3;
+
+        // Toggle del pulsante
         audioToggle.addEventListener('click', function() {
-            if (isVisible) {
-                spotifyPlayer.style.display = 'none';
+            if (isPlaying) {
+                audio.pause();
                 audioToggle.textContent = '🔇';
-                isVisible = false;
+                isPlaying = false;
             } else {
-                spotifyPlayer.style.display = 'block';
+                audio.play().catch(function(error) {
+                    console.log('Autoplay bloccato dal browser - clicca per riprodurre');
+                    // Se autoplay è bloccato, mostra un messaggio
+                    audioToggle.textContent = '▶️';
+                });
                 audioToggle.textContent = '🎵';
-                isVisible = true;
+                isPlaying = true;
             }
+        });
+
+        // Aggiorna l'icona quando la musica finisce e riparte
+        audio.addEventListener('play', function() {
+            audioToggle.textContent = '🎵';
+            isPlaying = true;
+        });
+
+        audio.addEventListener('pause', function() {
+            audioToggle.textContent = '🔇';
+            isPlaying = false;
+        });
+
+        // Quando finisce, ricomincia automaticamente
+        audio.addEventListener('ended', function() {
+            audio.currentTime = 0;
+            audio.play();
         });
     </script>
 </body>
