@@ -529,12 +529,11 @@
     </style>
 </head>
 <body>
-    <!-- Background Audio - Kingdom of Predators -->
-    <div id="playerContainer" style="display:none; position:fixed; width:1px; height:1px; pointer-events:none; z-index:-1;"></div>
-    <audio id="bgAudio" autoplay loop volume="0.3">
-        <source src="https://invokeai.github.io/media/Kingdom_of_Predators.mp3" type="audio/mpeg">
-    </audio>
-    <button class="audio-control" id="audioToggle" title="Accendi/Spegni musica">🔊</button>
+    <!-- Background Audio - Baby by Justin Bieber (via Spotify) -->
+    <button class="audio-control" id="audioToggle" title="Accendi/Spegni musica di sottofondo">🎵</button>
+    <div id="spotifyPlayer" style="position:fixed; top:10px; right:10px; z-index:999; opacity:0.7;">
+        <iframe style="border-radius:12px" src="https://open.spotify.com/embed/track/62bPgb5f7ZP0DgcdRCdpLV?utm_source=generator" width="100%" height="80" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"></iframe>
+    </div>
     <div class="container">
         <h1>
             <span class="emoji">🌟</span>
@@ -611,27 +610,6 @@
             </div>
         </div>
 
-        <div class="kingdom-section">
-            <div class="kingdom-content">
-                <div class="kingdom-title">👑 Kingdom of Predators 👑</div>
-                <div class="kingdom-subtitle">La sigla leggendaria di Hunter x Hunter</div>
-                <div class="kingdom-description">
-                    Una delle sigle più iconiche dell'anime! Questa musica racchiude l'intensità, la determinazione e lo spirito avventuriero di Hunter x Hunter. Proprio come il significato della sigla, voglio che sappia che sei una "predatrice" nel raggiungere i tuoi sogni! 🔥
-                </div>
-                <div class="listen-buttons">
-                    <a href="https://open.spotify.com/search/Kingdom%20of%20Predators%20Hunter%20x%20Hunter" target="_blank" class="listen-btn">
-                        🎧 Ascolta su Spotify
-                    </a>
-                    <a href="https://www.youtube.com/results?search_query=Kingdom+of+Predators+Hunter+x+Hunter+opening" target="_blank" class="listen-btn">
-                        🎬 Guarda su YouTube
-                    </a>
-                    <a href="https://music.youtube.com/search?q=Kingdom+of+Predators+Hunter+x+Hunter" target="_blank" class="listen-btn">
-                        🎵 YouTube Music
-                    </a>
-                </div>
-            </div>
-        </div>
-
         <div class="hunter-quote">
             "Grazie per essere la migliore sorella dell'universo di Hunter x Hunter... e della vita reale! 🌍"
         </div>
@@ -643,40 +621,22 @@
     </div>
 
     <script>
-        // Audio Control
-        const audio = document.getElementById('bgAudio');
+        // Spotify Player Control
         const audioToggle = document.getElementById('audioToggle');
-        let isPlaying = true;
+        const spotifyPlayer = document.getElementById('spotifyPlayer');
+        let isVisible = true;
 
-        // Tenta di riprodurre automaticamente
-        audio.play().catch(function(error) {
-            isPlaying = false;
-            audioToggle.textContent = '🔇';
-            console.log('Autoplay bloccato dal browser');
-        });
-
-        // Toggle del pulsante
+        // Toggle della visibilità del player
         audioToggle.addEventListener('click', function() {
-            if (isPlaying) {
-                audio.pause();
+            if (isVisible) {
+                spotifyPlayer.style.display = 'none';
                 audioToggle.textContent = '🔇';
-                isPlaying = false;
+                isVisible = false;
             } else {
-                audio.play();
-                audioToggle.textContent = '🔊';
-                isPlaying = true;
+                spotifyPlayer.style.display = 'block';
+                audioToggle.textContent = '🎵';
+                isVisible = true;
             }
-        });
-
-        // Aggiorna l'icona quando la musica finisce e riparte
-        audio.addEventListener('play', function() {
-            audioToggle.textContent = '🔊';
-            isPlaying = true;
-        });
-
-        audio.addEventListener('pause', function() {
-            audioToggle.textContent = '🔇';
-            isPlaying = false;
         });
     </script>
 </body>
